@@ -5,7 +5,7 @@ const db = require("../models")
 
 //view all workouts
 app.get("/api/workouts", (req, res) => {
-    db.Workout.find({})
+    db.workout.find({})
       .then(dbWorkout => {
         res.json(dbWorkout);
       })
@@ -16,7 +16,7 @@ app.get("/api/workouts", (req, res) => {
 
 //create new workout
 app.post("/api/workouts", (req, res) => {
-  db.Workout.create({})
+  db.workout.create({})
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
@@ -27,7 +27,7 @@ app.post("/api/workouts", (req, res) => {
 
 //delete workout
 app.delete("/api/workouts", ({ body }, res) => {
-  db.Workout.findByIdAndDelete(body.id)
+  db.workout.findByIdAndDelete(body.id)
     .then(() => {
       res.json(true);
     })
@@ -38,7 +38,7 @@ app.delete("/api/workouts", ({ body }, res) => {
 
 //update workout
 app.put("/api/workouts/:id", ({ body, params }, res) => {
-  db.Workout.findByIdAndUpdate(params.id, {$push: {exercises: body}})
+  db.workout.findByIdAndUpdate(params.id, {$push: {exercises: body}})
     .then(dbUpdatedData => {
       res.json(dbUpdatedData);
     })
@@ -49,7 +49,7 @@ app.put("/api/workouts/:id", ({ body, params }, res) => {
 
 //view all workouts in charts
 app.get("/api/workouts/range", (req, res) => {
-  db.Workout.find({})
+  db.workout.find({})
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
